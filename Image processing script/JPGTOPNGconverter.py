@@ -1,0 +1,21 @@
+from PIL import Image, ImageFilter
+import sys
+import pathlib
+import os
+
+#grab first and second argument from sys;
+image_folder = sys.argv[1]
+output_folder = sys.argv[2]
+
+#check if newfolder exists , if not ,create it;
+if not os.path.exists(output_folder):
+	os.makedirs(output_folder)
+
+#look though pokedex and convert to png;
+for filename in os.listdir(image_folder):
+	img = Image.open(f"{image_folder}{filename}")
+	clean_name = os.path.splitext(filename)[0]
+	img.save(f"{output_folder}{clean_name}" , "png")
+	print("all done")
+#save to new folder;
+
